@@ -4,12 +4,28 @@ const status = document.querySelector("#upload-status");
 const petalLayer = document.querySelector(".petal-layer");
 const flowers = ["🌸", "🌷", "🌼", "✿"];
 const backgroundSong = document.querySelector("#background-song");
+const musicButton = document.querySelector("#music-toggle");
+const musicLabel = document.querySelector("#music-label");
 
 backgroundSong.volume = 1;
 
-backgroundSong.play().catch(() => {
-  // Browsers may block audible autoplay until the visitor interacts.
+function startMusic() {
+  backgroundSong.play().catch(() => {
+    musicButton.hidden = false;
+  });
+}
+
+musicButton.addEventListener("click", startMusic);
+backgroundSong.addEventListener("play", () => {
+  musicButton.hidden = true;
 });
+backgroundSong.addEventListener("error", () => {
+  musicButton.disabled = true;
+  musicLabel.textContent = "song unavailable";
+  musicButton.hidden = false;
+});
+
+startMusic();
 
 picker.addEventListener("change", () => {
   const images = [...picker.files].filter((file) => file.type.startsWith("image/"));
