@@ -54,8 +54,9 @@ a { color: inherit; }
 .wordmark { text-decoration: none; font-weight: 700; }
 .wordmark span, .topbar-note span { color: var(--plum); }
 .topbar-note { color: var(--muted); text-decoration: none; }
+.music-control[hidden] { display: none; }
 .music-control { display: inline-flex; align-items: center; gap: 7px; border: 0; padding: 4px 0; color: var(--muted); background: transparent; cursor: pointer; font: inherit; letter-spacing: inherit; text-transform: inherit; }
-.music-control:hover, .music-control[aria-pressed="true"] { color: var(--plum); }
+.music-control:hover { color: var(--plum); }
 .music-control:focus-visible { outline: 2px solid var(--plum); outline-offset: 5px; }
 .music-icon { display: inline-grid; width: 19px; height: 19px; place-items: center; border: 1px solid currentColor; border-radius: 50%; font-size: 12px; line-height: 1; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }

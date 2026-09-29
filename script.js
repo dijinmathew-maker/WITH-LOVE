@@ -10,31 +10,19 @@ const backgroundSong = document.querySelector("#background-song");
 
 backgroundSong.volume = 0.4;
 
-function updateMusicControl() {
-  const isPlaying = !backgroundSong.paused;
-  musicButton.setAttribute("aria-pressed", String(isPlaying));
-  musicButton.setAttribute("aria-label", `${isPlaying ? "Pause" : "Play"} our song`);
-  musicLabel.textContent = `${isPlaying ? "pause" : "play"} our song`;
-  musicIcon.textContent = isPlaying ? "Ⅱ" : "♫";
-}
-
-musicButton.addEventListener("click", async () => {
-  if (backgroundSong.paused) {
-    try {
-      await backgroundSong.play();
-    } catch {
-      musicLabel.textContent = "song unavailable";
-    }
-  } else {
-    backgroundSong.pause();
-  }
+musicButton.addEventListener("click", () => {
+  backgroundSong.play().catch(() => {
+    musicLabel.textContent = "tap to start our song";
+  });
 });
 
-backgroundSong.addEventListener("play", updateMusicControl);
-backgroundSong.addEventListener("pause", updateMusicControl);
-backgroundSong.addEventListener("ended", updateMusicControl);
 backgroundSong.addEventListener("error", () => {
+  musicButton.hidden = false;
   musicLabel.textContent = "song unavailable";
+});
+
+backgroundSong.play().catch(() => {
+  musicButton.hidden = false;
 });
 
 picker.addEventListener("change", () => {

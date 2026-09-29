@@ -20,14 +20,14 @@
 
   <header class="topbar">
     <a class="wordmark" href="#top" aria-label="For Aami, home">little love letter <span>✳</span></a>
-    <button class="music-control" id="music-toggle" type="button" aria-pressed="false" aria-label="Play our song">
+    <button class="music-control" id="music-toggle" type="button" aria-label="Start our song" hidden>
       <span class="music-icon" id="music-icon" aria-hidden="true">♫</span>
-      <span id="music-label">play our song</span>
+      <span id="music-label">tap to start our song</span>
     </button>
     <a class="topbar-note" href="#memories">six months, us <span>↓</span></a>
   </header>
 
-  <audio id="background-song" loop preload="none" hidden>
+  <audio id="background-song" autoplay loop preload="auto" hidden>
     <source src="song/She%20%26%20Him%20-%20I%20Thought%20I%20Saw%20Your%20Face%20Today%20(Official%20Lyric%20Video).mp3" type="audio/mpeg">
   </audio>
 
