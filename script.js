@@ -3,6 +3,39 @@ const gallery = document.querySelector("#memory-grid");
 const status = document.querySelector("#upload-status");
 const petalLayer = document.querySelector(".petal-layer");
 const flowers = ["🌸", "🌷", "🌼", "✿"];
+const musicButton = document.querySelector("#music-toggle");
+const musicLabel = document.querySelector("#music-label");
+const musicIcon = document.querySelector("#music-icon");
+const backgroundSong = document.querySelector("#background-song");
+
+backgroundSong.volume = 0.4;
+
+function updateMusicControl() {
+  const isPlaying = !backgroundSong.paused;
+  musicButton.setAttribute("aria-pressed", String(isPlaying));
+  musicButton.setAttribute("aria-label", `${isPlaying ? "Pause" : "Play"} our song`);
+  musicLabel.textContent = `${isPlaying ? "pause" : "play"} our song`;
+  musicIcon.textContent = isPlaying ? "Ⅱ" : "♫";
+}
+
+musicButton.addEventListener("click", async () => {
+  if (backgroundSong.paused) {
+    try {
+      await backgroundSong.play();
+    } catch {
+      musicLabel.textContent = "song unavailable";
+    }
+  } else {
+    backgroundSong.pause();
+  }
+});
+
+backgroundSong.addEventListener("play", updateMusicControl);
+backgroundSong.addEventListener("pause", updateMusicControl);
+backgroundSong.addEventListener("ended", updateMusicControl);
+backgroundSong.addEventListener("error", () => {
+  musicLabel.textContent = "song unavailable";
+});
 
 picker.addEventListener("change", () => {
   const images = [...picker.files].filter((file) => file.type.startsWith("image/"));

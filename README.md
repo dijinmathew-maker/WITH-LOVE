@@ -4,7 +4,7 @@ A small, static anniversary scrapbook for Aami from DD. It runs in a browser wit
 
 ## Open
 
-Open `index.html` in a browser. Keep the `assets` folder beside the HTML file so the five included photos load correctly. Google Fonts are optional; the page uses local serif and sans-serif fallbacks when offline.
+Open `index.html` in a browser. Keep the `assets` and `song` folders beside the HTML file so the five included photos and soundtrack load correctly. Press **play our song** to start the looping background music; browsers require a click before audio can play. Google Fonts are optional; the page uses local serif and sans-serif fallbacks when offline.
 
 The **Add photos** control previews selected images locally for the current visit only. It does not upload or save them.
 
@@ -14,3 +14,4 @@ The **Add photos** control previews selected images locally for the current visi
 - `styles.css` contains the layout, responsive styling, and animations.
 - `script.js` handles local photo previews and falling flowers.
 - `assets/` contains the five included couple photos.
+- `song/` contains the soundtrack.
