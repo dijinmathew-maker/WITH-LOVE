@@ -3,26 +3,12 @@ const gallery = document.querySelector("#memory-grid");
 const status = document.querySelector("#upload-status");
 const petalLayer = document.querySelector(".petal-layer");
 const flowers = ["🌸", "🌷", "🌼", "✿"];
-const musicButton = document.querySelector("#music-toggle");
-const musicLabel = document.querySelector("#music-label");
-const musicIcon = document.querySelector("#music-icon");
 const backgroundSong = document.querySelector("#background-song");
 
-backgroundSong.volume = 0.4;
-
-musicButton.addEventListener("click", () => {
-  backgroundSong.play().catch(() => {
-    musicLabel.textContent = "tap to start our song";
-  });
-});
-
-backgroundSong.addEventListener("error", () => {
-  musicButton.hidden = false;
-  musicLabel.textContent = "song unavailable";
-});
+backgroundSong.volume = 1;
 
 backgroundSong.play().catch(() => {
-  musicButton.hidden = false;
+  // Browsers may block audible autoplay until the visitor interacts.
 });
 
 picker.addEventListener("change", () => {
