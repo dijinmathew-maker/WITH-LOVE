@@ -27,6 +27,25 @@ backgroundSong.addEventListener("error", () => {
 
 startMusic();
 
+const revealLines = document.querySelectorAll(".scroll-reveal-line");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (reduceMotion || !("IntersectionObserver" in window)) {
+  revealLines.forEach((line) => line.classList.add("is-visible"));
+} else {
+  document.documentElement.classList.add("reveal-ready");
+  const lineObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  revealLines.forEach((line) => lineObserver.observe(line));
+}
+
 picker.addEventListener("change", () => {
   const images = [...picker.files].filter((file) => file.type.startsWith("image/"));
 
