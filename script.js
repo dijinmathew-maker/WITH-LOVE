@@ -34,12 +34,9 @@ if (reduceMotion || !("IntersectionObserver" in window)) {
   revealLines.forEach((line) => line.classList.add("is-visible"));
 } else {
   document.documentElement.classList.add("reveal-ready");
-  const lineObserver = new IntersectionObserver((entries, observer) => {
+  const lineObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      }
+      entry.target.classList.toggle("is-visible", entry.isIntersecting);
     });
   }, { threshold: 0.4 });
 
